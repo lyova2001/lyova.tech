@@ -12,7 +12,7 @@ export default function Home() {
       </main>
       <footer className={styles.footer}>
         <a href="https://www.linkedin.com/in/lyova-avetisyan-34b50b236/" target="_blank" rel="noopener noreferrer">
-          LinkedIn
+          My LinkedIn
         </a>
         <a href="https://github.com/lyova2001" target="_blank" rel="noopener noreferrer">
           GitHub
