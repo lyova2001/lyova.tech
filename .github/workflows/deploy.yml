@@ -3,11 +3,12 @@ name: Deploy to Netlify
 on:
   push:
     branches:
-      - main  # prod branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -15,16 +16,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # Node.js version
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm install  # install comand
+        run: npm install
 
-      - name: Build project
-        run: npm run build  # build command
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
 
       - name: Deploy to Netlify
+        run: netlify deploy --prod --dir=.next
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: npx netlify-cli deploy --prod --dir=.next
